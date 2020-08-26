@@ -18,7 +18,7 @@ ggplot(data = allRates, aes(x=variable, y=value, fill=variable)) +
   scale_y_continuous(limits = c(0.0,0.015))  +
   theme(legend.position="bottom") +
   stat_summary(fun.y=median, geom="point", size=2, color="red") +
-  labs(title="Nucleotide substitution rate per codon", y = "nucleotide mutations / site / year", x = "Phylogenetic Clade", fill="Clade") +
+  labs(title="Nucleotide substitution rate per codon", y = "nucleotide substitutions / site / year", x = "Phylogenetic Clade", fill="Clade") +
   guides(fill=FALSE) + 
   theme(legend.position = "bottom", 
         panel.background = element_rect(fill = "white"),
@@ -50,24 +50,29 @@ meanRates <- data.frame(
 rates <- melt(meanRates)
 
 #Figure S6
+tiff("figure6.tiff", units="cm", width=16.9, height=13.5, res=300, compression='lzw')
+
 ggplot(data = rates, aes(x=variable, y=value, fill=variable)) +
   geom_violin() + 
   scale_y_continuous(limits = c(0.0,0.01))  +
   theme(legend.position="bottom") +
   stat_summary(fun.y=median, geom="point", size=2, color="red") +
-  labs(y = "nucleotide mutations / site / year", x = "Phylogenetic Clade", fill="Clade") + #title="Mean nucleotide substitution rate",
+  labs(y = "nucleotide substitutions / site / year", x = "Phylogenetic Clade", fill="Clade") + #title="Mean nucleotide substitution rate",
   guides(fill=FALSE) +
   theme(legend.position = "bottom", 
         panel.background = element_rect(fill = "white"),
         panel.grid.major = element_line(colour = "gray90"),
         panel.grid.minor = element_line(colour = "gray90"),
-        axis.title = element_text(size=16,face="bold"),
-        axis.text = element_text(size=14,face="bold"),
+        axis.title = element_text(face="bold"),
+        axis.text = element_text(face="bold"),
         axis.text.x = element_text(angle = 90, hjust = 1, vjust=0.5),
-        title = element_text(size=20,face="bold"),
-        legend.title = element_text(size=16,),
-        legend.text = element_text(size=16),
+        title = element_text(,face="bold"),
+        legend.title = element_text(),
+        legend.text = element_text(),
   )
+
+dev.off()
+
 
 ###########################
 #Focus on codon position 3#
