@@ -1,6 +1,7 @@
 library(reshape2)
 library(ggplot2)
 library(viridis)
+library(dplyr)
 
 # Load data
 clades <- read.csv("year_data.csv", na.strings = 0)
@@ -58,6 +59,42 @@ stateList <- dcast(states, State.Province + collection_date ~ merged_clade)
 stateItem <- melt(stateList, id = c("collection_date","State.Province"))
 
 ggplot(data = stateItem, aes(x=collection_date, y=value, color=variable, fill=variable))+
+  geom_area(alpha=1, size=.5, colour="white") +
+  scale_fill_viridis(discrete = T, option="inferno", name="HA-NA clade pair") + 
+  labs(y = "Percent of N2 detection", x = "Year", color="test") +
+  #scale_x_continuous(limits = c(2009,2018), expand = c(0, 0.2)) +
+  theme(legend.position = "bottom", 
+        panel.background = element_rect(fill = "white"),
+        axis.title = element_text(size=12,face="bold"),
+        axis.text = element_text(size=11,face="bold"),
+        axis.text.x = element_text(angle = 90, hjust = 1, vjust=0.5),
+        legend.title = element_text(size=12,),
+        legend.text = element_text(size=12),
+  ) +
+  facet_wrap(~State.Province, ncol = 2)
+
+ggplot(data = stateItem, aes(x=collection_date, y=value, color=variable, fill=variable))+
+  geom_line(size = 1.5) +
+  scale_fill_viridis(discrete = T, option="inferno", name="HA-NA clade pair") + 
+  labs(y = "Percent of N2 detection", x = "Year", color="test") +
+  #scale_x_continuous(limits = c(2009,2018), expand = c(0, 0.2)) +
+  theme(legend.position = "bottom", 
+        panel.background = element_rect(fill = "white"),
+        axis.title = element_text(size=12,face="bold"),
+        axis.text = element_text(size=11,face="bold"),
+        axis.text.x = element_text(angle = 90, hjust = 1, vjust=0.5),
+        legend.title = element_text(size=12,),
+        legend.text = element_text(size=12),
+  ) +
+  facet_wrap(~State.Province, ncol = 2)
+
+
+data <- stateItem  %>%
+  group_by(State.Province, collection_date, variable) %>%
+  summarise(n = sum(value)) %>%
+  mutate(percentage = n / sum(n))
+         
+ggplot(data = data, aes(x=collection_date, y=percentage, color=variable, fill=variable))+
   geom_area(alpha=1, size=.5, colour="white") +
   scale_fill_viridis(discrete = T, option="inferno", name="HA-NA clade pair") + 
   labs(y = "Percent of N2 detection", x = "Year", color="test") +
