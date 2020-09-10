@@ -171,3 +171,5 @@ str(obs_bothna)
 #Plot together
 library(cowplot)
 (mixplot <- plot_grid(plot4, plot3, labels = "AUTO", label_size = 18))
+
+(mixplot <- plot_grid(plot4, labels = "", label_size = 18))
