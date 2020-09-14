@@ -49,7 +49,7 @@ ggplot(data = normLongClades, aes(x=year, y=value, color=variable, fill=variable
 states <- read.csv("state_data.csv")
 
 #Drop out clades not in top 10
-topClades <- list("delta1b-02A","cluster_iva-02B","delta1a-02B","delta2-98B","cluster_ivb-02B","delta1a-02A","2010.1-02B","cluster_iva-02A","2010.1-02A","alpha-02B")
+topClades <- list("H1.delta1b-N2.2002A","H3.cluster_iva-N2.2002B","H1.delta1a-N2.2002B","H1.delta2-N2.1998B","H3.cluster_ivb-N2.2002B","H1.delta1a-N2.2002A","H3.2010.1-N2.2002B","H3.cluster_iva-N2.2002A","H3.2010.1-N2.2002A","H1.alpha-N2.2002B")
 topStates <- list("Iowa","Illinois","North Carolina","Minnesota","Indiana","Nebraska")
 states <-states [states$merged_clade %in% topClades,]
 states <-states [states$State.Province %in% topStates,]
