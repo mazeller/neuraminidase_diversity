@@ -613,7 +613,7 @@
 	</operators>
 
 	<!-- Define MCMC                                                             -->
-	<mcmc id="mcmc" chainLength="10000000" autoOptimize="true" operatorAnalysis="civf.ops.txt">
+	<mcmc id="mcmc" chainLength="100000000" autoOptimize="true" operatorAnalysis="civf.ops.txt">
 		<posterior id="posterior">
 			<prior id="prior">
 				<gammaPrior shape="0.05" scale="10.0" offset="0.0">
@@ -695,7 +695,7 @@
 		<operators idref="operators"/>
 
 		<!-- write log to screen                                                     -->
-		<log id="screenLog" logEvery="1000">
+		<log id="screenLog" logEvery="10000">
 			<column label="Posterior" dp="4" width="12">
 				<posterior idref="posterior"/>
 			</column>
@@ -720,7 +720,7 @@
 		</log>
 
 		<!-- write log to file                                                       -->
-		<log id="fileLog" logEvery="1000" fileName="civf.log.txt" overwrite="false">
+		<log id="fileLog" logEvery="10000" fileName="civf.log.txt" overwrite="false">
 			<posterior idref="posterior"/>
 			<prior idref="prior"/>
 			<likelihood idref="likelihood"/>
