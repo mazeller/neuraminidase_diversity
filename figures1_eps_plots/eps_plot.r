@@ -15,9 +15,12 @@ delta2 <- read.csv("../H1.delta2_eps/h1.delta2_gmrf_reconstruction1.tsv", sep = 
 delta2_2 <- read.csv("../H1.delta2_eps/h1.delta2_gmrf_reconstruction2.tsv", sep = "\t" , header = TRUE)
 
 
-####################
-#PRETTY PLOT EPS N2#
-####################
+###############################
+#PRETTY PLOT EPS N2 Figure S1 #
+###############################
+#using tiff() and dev.off
+tiff('test.tiff', units="in", width=13.5, height=9, res=300, compression = 'lzw')
+
 #Data starts in August 2009, or at 2009.66. Scaled at 800x680
 (plot1 <- ggplot(n2_2002, aes(x = Time, y = Median))) +
   geom_ribbon(aes(ymin = Lower, ymax = Upper), fill = "red", alpha = 0.5) +
@@ -41,6 +44,8 @@ delta2_2 <- read.csv("../H1.delta2_eps/h1.delta2_gmrf_reconstruction2.tsv", sep 
         legend.text = element_text(size=14),
         ) + 
   scale_x_continuous(minor_breaks = seq(2008 , 2020, 1), breaks = seq(2008, 2020, 2), limits = c(2009.66,2019))
+
+dev.off()
 
 ############################
 #PRETTY PLOT TOTAL COMBINED#
