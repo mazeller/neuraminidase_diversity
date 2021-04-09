@@ -1,18 +1,18 @@
 #Section for instlaling rerq packages. Uncomment as needed.
 #install.packages("dendextend")
 #install.packages("ape")
-source("https://bioconductor.org/biocLite.R")
-biocLite("DECIPHER")
+#source("https://bioconductor.org/biocLite.R")
+#biocLite("DECIPHER")
 
 #Load libraries
-library(dendextend) # for comparing two dendrograms
+#library(dendextend) # for comparing two dendrograms
 library(DECIPHER)   # used for loading in newick format trees
 library(ape)        #general purpose
 library(reshape2)
 library(ggplot2)
 
 #load source data, our HA and N2 trees
-dendHA <- ReadDendrogram("ha_prepped2.tre", internalLabels = FALSE)
+dendHA <- ReadDendrogram("ha_prepped4.tre", internalLabels = FALSE)
 dendNA <- ReadDendrogram("na_prepped2.tre", internalLabels = FALSE)
 
 #set label colors trees
