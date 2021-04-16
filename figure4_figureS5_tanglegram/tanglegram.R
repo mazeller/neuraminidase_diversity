@@ -12,8 +12,8 @@ library(reshape2)
 library(ggplot2)
 
 #load source data, our HA and N2 trees
-dendHA <- ReadDendrogram("ha_prepped4.tre", internalLabels = FALSE)
-dendNA <- ReadDendrogram("na_prepped2.tre", internalLabels = FALSE)
+dendHA <- ReadDendrogram("ha_prepped3.tre", internalLabels = FALSE)
+dendNA <- ReadDendrogram("na_prepped3.tre", internalLabels = FALSE)
 
 #set label colors trees
 ha_lab <- labels(dendHA)
